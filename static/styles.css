@@ -40,6 +40,12 @@ section h2 {
     color: #fff;
 }
 
+/* Paragraph text color update inside section */
+section p {
+    color: #ffffff;
+    /* Changed to white for better visibility */
+}
+
 /* Feature boxes container */
 .feature-boxes {
     margin-top: 20px;
@@ -86,12 +92,6 @@ section h2 {
     text-align: left;
 }
 
-/* Paragraph text color update */
-section p {
-    color: #ffffff;
-    /* Changed to white for better visibility */
-}
-
 /* Call-to-action section styling */
 #cta {
     text-align: center;
@@ -131,8 +131,18 @@ section p {
     margin-top: 20px;
 }
 
-#cta button:hover {
-    background-color: #d32f2f;
+/* Add margin between the Send button and the security badges */
+.security-badges {
+    margin-top: 15px;
+    color: #90ee90;
+    /* Bright green for better visibility */
+    font-size: 1em;
+}
+
+.security-badges i {
+    color: #90ee90;
+    /* Bright green icons for better visibility */
+    margin-right: 5px;
 }
 
 /* Footer styling */
@@ -167,17 +177,4 @@ body {
     background-color: #162447;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* SSL and Data Encrypted styling */
-.security-badges {
-    color: #90ee90;
-    /* Bright green for better visibility */
-    font-size: 1em;
-}
-
-.security-badges i {
-    color: #90ee90;
-    /* Bright green icons for better visibility */
-    margin-right: 5px;
 }
