@@ -1,15 +1,10 @@
 /* Label styling */
 label {
     color: #90ee90;
-    /* Light green color */
     font-size: 1em;
-    /* Adjust font size if needed */
     font-family: Arial, sans-serif;
-    /* Ensure consistency with the rest of the design */
     display: block;
-    /* Make sure the label takes up the full width */
     margin-bottom: 10px;
-    /* Add some space between the label and the input/textarea */
 }
 
 /* General container styling */
@@ -40,10 +35,9 @@ section h2 {
     color: #fff;
 }
 
-/* Paragraph text color update inside section */
-section p {
+/* Specific styling for paragraphs in the How It Works section */
+#how-it-works h3 {
     color: #ffffff;
-    /* Changed to white for better visibility */
 }
 
 /* Feature boxes container */
@@ -135,13 +129,11 @@ section p {
 .security-badges {
     margin-top: 15px;
     color: #90ee90;
-    /* Bright green for better visibility */
     font-size: 1em;
 }
 
 .security-badges i {
     color: #90ee90;
-    /* Bright green icons for better visibility */
     margin-right: 5px;
 }
 
@@ -163,7 +155,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #1a1a1a;
-    /* Dark gray color for the background */
     font-family: Arial, sans-serif;
 }
 
@@ -171,7 +162,6 @@ body {
 .container {
     width: 90%;
     max-width: 800px;
-    /* Increased max-width for better desktop display */
     margin: auto;
     padding: 20px;
     background-color: #162447;
