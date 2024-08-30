@@ -86,6 +86,12 @@ section h2 {
     text-align: left;
 }
 
+/* Paragraph text color update */
+section p {
+    color: #ffffff;
+    /* Changed to white for better visibility */
+}
+
 /* Call-to-action section styling */
 #cta {
     text-align: center;
@@ -163,121 +169,15 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Header styling */
-header {
-    text-align: center;
-    padding-bottom: 20px;
-    background-color: #1f4068;
-    padding: 20px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    color: #fff;
-    font-family: Arial, sans-serif;
-}
-
-/* Section heading styling */
-section h2 {
-    color: #fff;
-}
-
-/* Feature boxes container */
-.feature-boxes {
-    margin-top: 20px;
-    padding: 0 20px;
-}
-
-/* Individual feature box styling */
-.feature-box {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    color: #fff;
-    font-family: Arial, sans-serif;
-}
-
-.icon-container {
-    flex-shrink: 0;
-    margin-right: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.feature-box i {
-    font-size: 2.5em;
-    color: #e43f5a;
-}
-
-/* Text container for feature description */
-.text-container {
-    flex-grow: 1;
-}
-
-.text-container h3 {
-    font-size: 1.5em;
-    margin-bottom: 5px;
-    text-align: left;
-    color: #fff;
-}
-
-.text-container p {
-    font-size: 1em;
-    color: #ccc;
-    text-align: left;
-}
-
-/* Call-to-action section styling */
-#cta {
-    text-align: center;
-    background: linear-gradient(135deg, #1f4068, #162447);
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 30px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    font-family: Arial, sans-serif;
-}
-
-#cta h2 {
-    font-size: 1.8em;
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-#cta input[type="email"],
-#cta textarea {
-    padding: 10px;
-    width: 90%;
-    margin: 10px auto;
-    border: 2px solid #1a1a2e;
-    border-radius: 10px;
+/* SSL and Data Encrypted styling */
+.security-badges {
+    color: #90ee90;
+    /* Bright green for better visibility */
     font-size: 1em;
 }
 
-#cta button {
-    padding: 15px 30px;
-    background-color: #e43f5a;
-    border: none;
-    color: #fff;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-}
-
-#cta button:hover {
-    background-color: #d32f2f;
-}
-
-/* Footer styling */
-footer {
-    text-align: center;
-    padding: 15px 0;
-    background-color: #162447;
-    color: #ccc;
-    font-size: 0.9em;
-    margin-top: 20px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    font-family: Arial, sans-serif;
+.security-badges i {
+    color: #90ee90;
+    /* Bright green icons for better visibility */
+    margin-right: 5px;
 }
