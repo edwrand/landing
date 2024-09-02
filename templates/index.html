@@ -7,6 +7,16 @@
     <title>DirectSurvey - Customer Survey Platform</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Google Analytics Tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXYPHH1JZQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZXYPHH1JZQ');
+    </script>
 </head>
 
 <body>
@@ -91,6 +101,33 @@
             <p>&copy; 2024 DataGift. All rights reserved.</p>
         </footer>
     </div>
+
+    <script>
+        // Verify that the script is running
+        alert("Script is running!");
+
+        // Add event listener to the form
+        document.getElementById("cta-form").addEventListener("submit", function (event) {
+            event.preventDefault();  // Prevent the default form submission
+
+            const email = document.getElementById("email").value;
+
+            // Check if the email field is filled
+            if (email) {
+                alert("Thank you! We’ll keep you updated.");
+                document.getElementById("cta-form").reset();  // Reset the form after submission
+
+                // Track the form submission event with Google Analytics
+                gtag('event', 'subscribe', {
+                    'event_category': 'engagement',
+                    'event_label': 'email_subscription',
+                    'value': email
+                });
+            } else {
+                alert("Please enter a valid email.");
+            }
+        });
+    </script>
 </body>
 
 </html>
