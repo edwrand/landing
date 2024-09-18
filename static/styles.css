@@ -1,18 +1,16 @@
-/* General body styling */
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    /* Changed background color to white */
+/* Label styling */
+label {
+    color: #90ee90;
+    font-size: 1em;
     font-family: Arial, sans-serif;
-    color: #003366;
-    /* Changed text color to blue */
+    display: block;
+    margin-bottom: 10px;
 }
 
 /* General container styling */
 .container {
     width: 90%;
-    max-width: 800px;
+    max-width: 600px;
     margin: auto;
     padding: 20px;
     background-color: #162447;
@@ -32,25 +30,14 @@ header {
     font-family: Arial, sans-serif;
 }
 
-/* Label styling */
-label {
-    color: #90ee90;
-    font-size: 1em;
-    font-family: Arial, sans-serif;
-    display: block;
-    margin-bottom: 10px;
-}
-
 /* Section heading styling */
 section h2 {
-    color: #003366;
-    /* Changed section heading color to match blue text theme */
+    color: #fff;
 }
 
 /* Specific styling for paragraphs in the How It Works section */
 #how-it-works h3 {
-    color: #003366;
-    /* Changed paragraph text color to blue */
+    color: #ffffff;
 }
 
 /* Feature boxes container */
@@ -64,13 +51,7 @@ section h2 {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    background-color: #ffffff;
-    /* Set background color to white for feature boxes */
-    border: 2px solid #003366;
-    /* Blue border for segmentation */
-    border-radius: 10px;
-    padding: 20px;
-    color: #003366;
+    color: #fff;
     font-family: Arial, sans-serif;
 }
 
@@ -96,14 +77,12 @@ section h2 {
     font-size: 1.5em;
     margin-bottom: 5px;
     text-align: left;
-    color: #003366;
-    /* Blue text */
+    color: #fff;
 }
 
 .text-container p {
     font-size: 1em;
-    color: #666666;
-    /* Subtle gray text */
+    color: #ccc;
     text-align: left;
 }
 
@@ -121,7 +100,7 @@ section h2 {
 
 #cta h2 {
     font-size: 1.8em;
-    color: #ffffff;
+    color: #fff;
     margin-bottom: 20px;
 }
 
@@ -137,19 +116,13 @@ section h2 {
 
 #cta button {
     padding: 15px 30px;
-    background-color: #003366;
-    /* Changed button color to blue */
+    background-color: #e43f5a;
     border: none;
     color: #fff;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 20px;
-}
-
-#cta button:hover {
-    background-color: #002244;
-    /* Darker blue for hover */
 }
 
 /* Add margin between the Send button and the security badges */
@@ -177,20 +150,21 @@ footer {
     font-family: Arial, sans-serif;
 }
 
-/* Button Styles */
-.cta-btn {
-    background-color: #003366;
-    /* Blue CTA button */
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    margin-top: 10px;
+/* General body styling to handle the background color for whitespace */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    font-family: Arial, sans-serif;
 }
 
-.cta-btn:hover {
-    background-color: #002244;
-    /* Darker blue hover */
+/* General container styling */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #162447;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
