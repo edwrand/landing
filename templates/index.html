@@ -23,8 +23,21 @@
     <style>
         .stats-number {
             color: green;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
+        }
+
+        #stats {
+            margin-top: 15px;
+        }
+
+        #stats h5 {
+            font-size: 1.2rem;
+        }
+
+        .stat-box {
+            display: inline-block;
+            margin: 0 15px;
         }
     </style>
 </head>
@@ -37,25 +50,23 @@
                 <i class="fas fa-gift fa-2x"></i>
             </div>
             <p>Your all-in-one tool for gathering data and rewarding your customers.</p>
-        </header>
 
-        <!-- Dynamic Stats Section -->
-        <section id="stats" class="py-5 text-center">
-            <div class="row">
-                <div class="col-md-4">
-                    <h3>Survey Response Rate</h3>
-                    <span id="surveyRate" class="stats-number">10%</span>
+            <!-- Smaller Stats Section Inside Header -->
+            <div id="stats" class="text-center">
+                <div class="stat-box">
+                    <h5>Response Rate</h5>
+                    <span id="surveyRate" class="stats-number">+10%</span>
                 </div>
-                <div class="col-md-4">
-                    <h3>Customers Rewarded for their Feedback</h3>
-                    <span id="customersRewarded" class="stats-number">0</span>
+                <div class="stat-box">
+                    <h5>Customers Rewarded</h5>
+                    <span id="customersRewarded" class="stats-number">+0</span>
                 </div>
-                <div class="col-md-4">
-                    <h3>Other Stat</h3>
-                    <span id="otherStat" class="stats-number">0</span>
+                <div class="stat-box">
+                    <h5>ROI from Insights</h5>
+                    <span id="otherStat" class="stats-number">+0</span>
                 </div>
             </div>
-        </section>
+        </header>
 
         <section id="about" class="py-5">
             <div class="row mt-4">
@@ -101,38 +112,15 @@
             <div class="collapse mt-4" id="whyPayContent">
                 <div class="px-4">
                     <p><strong>1. Increased Response Rates:</strong> Monetary incentives significantly increase
-                        participation in surveys.
-                        According to Yu et al. (2017), offering a $10 incentive led to a 30% boost in survey responses,
-                        particularly from initially reluctant participants. Similarly, Smith et al. (2021) found that
-                        even small incentives, like $2 cash, can nearly triple response rates compared to non-monetary
-                        incentives.</p>
+                        participation in surveys.</p>
                     <p><strong>2. Cost-Effective Data Collection:</strong> Offering incentives may reduce overall costs
-                        by speeding up data collection. Sobolewski et al. (2024) showed that a $5 incentive was the most
-                        cost-effective option for online surveys, achieving a balance between cost, response rate, and
-                        time spent collecting data.</p>
+                        by speeding up data collection.</p>
                     <p><strong>3. Better Data Quality Without Bias:</strong> Incentivizing participants does not
-                        compromise the quality of responses. Yu et al. (2017) found no significant difference in
-                        response completeness between those who received incentives and those who did not.</p>
+                        compromise the quality of responses.</p>
                     <p><strong>4. Broader Demographic Representation:</strong> Paying for feedback attracts a more
-                        diverse and representative pool of respondents. Smith et al. (2021) and Sobolewski et al. (2024)
-                        found that cash incentives increased participation across demographic groups, improving data
-                        representativeness.</p>
+                        diverse and representative pool of respondents.</p>
                     <p><strong>5. Strengthening Customer Relationships:</strong> Offering incentives signals that
-                        customer opinions are valued, fostering loyalty and trust. This mutually beneficial exchange
-                        ensures businesses gather quality data while customers feel appreciated for their time.</p>
-                </div>
-
-                <div class="px-4 text-muted mt-4 small">
-                    <p>References:</p>
-                    <ul>
-                        <li>Smith, M. G., Witte, M., Rocha, S., & Basner, M. (2021). Effectiveness of incentives and
-                            follow-up on increasing survey response rates and participation in field studies.</li>
-                        <li>Sobolewski, J., Rothschild, A., & Freeman, A. (2024). The impact of incentives on data
-                            collection for online surveys: Social media recruitment study.</li>
-                        <li>Yu, S., Alper, H. E., Nguyen, A.-M., Brackbill, R. M., Turner, L., Walker, D. J., Maslow, C.
-                            B., & Zweig, K. C. (2017). The effectiveness of a monetary incentive offer on survey
-                            response rates and response completeness in a longitudinal study.</li>
-                    </ul>
+                        customer opinions are valued, fostering loyalty and trust.</p>
                 </div>
             </div>
         </section>
@@ -141,7 +129,6 @@
             <h2 class="text-primary">Interested? Join the Waitlist!</h2>
             <p class="text-muted">Be the first to access exclusive features and rewards.</p>
 
-            <!-- Updated Form with correct name attributes and required -->
             <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST" class="w-50 mx-auto">
                 <div class="mb-3">
                     <label for="email" class="form-label">Your email:</label>
