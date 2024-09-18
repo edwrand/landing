@@ -14,7 +14,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-ZXYPHH1JZQ');
     </script>
 </head>
@@ -56,7 +55,7 @@
                     </div>
                     <div class="text-container">
                         <h3>Security</h3>
-                        <p>Workflow features to prevent bots</p>
+                        <p>Workflow features to prevent bots.</p>
                     </div>
                 </div>
             </div>
@@ -90,7 +89,7 @@
                     Your message:
                     <textarea name="message"></textarea>
                 </label>
-                <button type="submit">Send</button>
+                <button type="submit" class="cta-btn">Send</button>
             </form>
             <div class="security-badges">
                 <i class="fas fa-lock"></i> SSL Secure | <i class="fas fa-shield-alt"></i> Data Encrypted
@@ -103,19 +102,12 @@
     </div>
 
     <script>
-
-        // Add event listener to the form
         document.getElementById("cta-form").addEventListener("submit", function (event) {
-            event.preventDefault();  // Prevent the default form submission
-
+            event.preventDefault();
             const email = document.getElementById("email").value;
-
-            // Check if the email field is filled
             if (email) {
                 alert("Thank you! We’ll keep you updated.");
-                document.getElementById("cta-form").reset();  // Reset the form after submission
-
-                // Track the form submission event with Google Analytics
+                document.getElementById("cta-form").reset();
                 gtag('event', 'subscribe', {
                     'event_category': 'engagement',
                     'event_label': 'email_subscription',
