@@ -23,21 +23,43 @@
     <style>
         .stats-number {
             color: green;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
         }
 
         #stats {
             margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         #stats h5 {
-            font-size: 1.2rem;
+            font-size: 1rem;
+            margin-bottom: 5px;
         }
 
         .stat-box {
-            display: inline-block;
-            margin: 0 15px;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        @media (max-width: 576px) {
+            .stat-box {
+                min-width: 100px;
+            }
+
+            .stats-number {
+                font-size: 1rem;
+            }
+
+            #stats h5 {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -51,23 +73,22 @@
             </div>
             <p>Your all-in-one tool for gathering data and rewarding your customers.</p>
 
+            <!-- Smaller Stats Section Inside Header -->
+            <div id="stats" class="text-center">
+                <div class="stat-box">
+                    <h5>Response Rate</h5>
+                    <span id="surveyRate" class="stats-number">+10%</span>
+                </div>
+                <div class="stat-box">
+                    <h5>Customers Rewarded</h5>
+                    <span id="customersRewarded" class="stats-number">+0</span>
+                </div>
+                <div class="stat-box">
+                    <h5>ROI from Insights</h5>
+                    <span id="otherStat" class="stats-number">+0</span>
+                </div>
+            </div>
         </header>
-
-        <!-- Smaller Stats Section Inside Header -->
-        <div id="stats" class="text-center">
-            <div class="stat-box">
-                <h5>Response Rate</h5>
-                <span id="surveyRate" class="stats-number">+10%</span>
-            </div>
-            <div class="stat-box">
-                <h5>Customers Rewarded</h5>
-                <span id="customersRewarded" class="stats-number">+0</span>
-            </div>
-            <div class="stat-box">
-                <h5>ROI from Insights</h5>
-                <span id="otherStat" class="stats-number">+0</span>
-            </div>
-        </div>
 
         <section id="about" class="py-5">
             <div class="row mt-4">
@@ -167,7 +188,7 @@
 
             let timer = setInterval(function () {
                 current += increment;
-                element.innerHTML = current + suffix;
+                element.innerHTML = '+' + current + suffix; // Adding + sign here
                 if (current == end) {
                     clearInterval(timer);
                 }
@@ -178,7 +199,7 @@
         window.onload = function () {
             animateValue("surveyRate", 10, 60, 6000, '%');
             animateValue("customersRewarded", 0, 127, 7500);
-            animateValue("otherStat", 0, 18, 9000); // Placeholder for another stat
+            animateValue("otherStat", 0, 18, 9000, '%'); // Placeholder for another stat
         };
     </script>
 </body>
