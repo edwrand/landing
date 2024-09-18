@@ -19,6 +19,14 @@
         gtag('js', new Date());
         gtag('config', 'G-ZXYPHH1JZQ');
     </script>
+
+    <style>
+        .stats-number {
+            color: green;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -30,6 +38,24 @@
             </div>
             <p>Your all-in-one tool for gathering data and rewarding your customers.</p>
         </header>
+
+        <!-- Dynamic Stats Section -->
+        <section id="stats" class="py-5 text-center">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Survey Response Rate</h3>
+                    <span id="surveyRate" class="stats-number">10%</span>
+                </div>
+                <div class="col-md-4">
+                    <h3>Customers Rewarded for their Feedback</h3>
+                    <span id="customersRewarded" class="stats-number">0</span>
+                </div>
+                <div class="col-md-4">
+                    <h3>Other Stat</h3>
+                    <span id="otherStat" class="stats-number">0</span>
+                </div>
+            </div>
+        </section>
 
         <section id="about" class="py-5">
             <div class="row mt-4">
@@ -141,17 +167,32 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Script for live stats animation -->
     <script>
-        // Add event listener to show the alert after form submission without interfering with the submission
-        document.getElementById("cta-form").addEventListener("submit", function (event) {
-            const email = document.getElementById("email").value;
-            if (email) {
-                alert("Thank you! We’ll keep you updated.");
-                // Form will submit naturally to Formspree, so no need to reset it manually here.
-            }
-        });
-    </script>
+        // Function to animate numbers increment
+        function animateValue(id, start, end, duration, suffix = '') {
+            let element = document.getElementById(id);
+            let range = end - start;
+            let current = start;
+            let increment = end > start ? 1 : -1;
+            let stepTime = Math.abs(Math.floor(duration / range));
 
+            let timer = setInterval(function () {
+                current += increment;
+                element.innerHTML = current + suffix;
+                if (current == end) {
+                    clearInterval(timer);
+                }
+            }, stepTime);
+        }
+
+        // Animate the stats on page load
+        window.onload = function () {
+            animateValue("surveyRate", 10, 60, 2000, '%');
+            animateValue("customersRewarded", 0, 127, 2500);
+            animateValue("otherStat", 0, 100, 3000); // Placeholder for another stat
+        };
+    </script>
 </body>
 
 </html>
