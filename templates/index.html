@@ -115,6 +115,8 @@
         <section id="cta" class="text-center py-5">
             <h2 class="text-primary">Interested? Join the Waitlist!</h2>
             <p class="text-muted">Be the first to access exclusive features and rewards.</p>
+
+            <!-- Updated Form -->
             <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST" class="w-50 mx-auto">
                 <div class="mb-3">
                     <label for="email" class="form-label">Your email:</label>
@@ -124,8 +126,11 @@
                     <label for="message" class="form-label">Your message:</label>
                     <textarea name="message" id="message" class="form-control"></textarea>
                 </div>
+                <!-- Optional: Redirect to a confirmation page after submission -->
+                <input type="hidden" name="_redirect" value="https://yourwebsite.com/thank-you">
                 <button type="submit" class="btn btn-primary w-100">Send</button>
             </form>
+
             <div class="security-badges mt-4">
                 <i class="fas fa-lock"></i> SSL Secure | <i class="fas fa-shield-alt"></i> Data Encrypted
             </div>
@@ -141,19 +146,11 @@
 
     <script>
         // Form submission event
-        document.getElementById("cta-form").addEventListener("submit", function (event) {
-            event.preventDefault();
+        document.getElementById("cta-form").addEventListener("submit", function () {
             const email = document.getElementById("email").value;
             if (email) {
                 alert("Thank you! We’ll keep you updated.");
-                document.getElementById("cta-form").reset();
-                gtag('event', 'subscribe', {
-                    'event_category': 'engagement',
-                    'event_label': 'email_subscription',
-                    'value': email
-                });
-            } else {
-                alert("Please enter a valid email.");
+                document.getElementById("cta-form").reset(); // Reset the form after submission
             }
         });
     </script>

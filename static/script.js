@@ -1,6 +1,6 @@
 // Verify that the script is running
 alert("Script is running!");
-
+/*
 // Add event listener to the form
 document.getElementById("cta-form").addEventListener("submit", function (event) {
     event.preventDefault();  // Prevent the default form submission
