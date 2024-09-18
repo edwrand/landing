@@ -6,11 +6,32 @@ document.getElementById("cta-form").addEventListener("submit", function (event) 
     event.preventDefault();  // Prevent the default form submission
 
     const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
 
     // Check if the email field is filled
     if (email) {
-        alert("Thank you! We’ll keep you updated.");
-        document.getElementById("cta-form").reset();  // Reset the form after submission
+        // Send the form data to Formspree
+        fetch("https://formspree.io/f/mrbzjywo", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                message: message
+            })
+        }).then(response => {
+            if (response.ok) {
+                alert("Thank you! We’ll keep you updated.");
+                document.getElementById("cta-form").reset();  // Reset the form after successful submission
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        }).catch(error => {
+            alert("There was an error submitting the form. Please try again later.");
+            console.error("Form submission error:", error);
+        });
     } else {
         alert("Please enter a valid email.");
     }
