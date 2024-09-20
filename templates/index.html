@@ -128,13 +128,49 @@
                     <label for="message" class="form-label text-white">Please type your company name here:</label>
                     <textarea name="message" id="message" class="form-control" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-success w-100">Send</button>
+                <button type="submit" class="btn btn-custom w-auto">Send</button>
             </form>
 
             <div class="security-badges mt-4">
-                <i class="fas fa-lock"></i> SSL Secure | <i class="fas fa-shield-alt"></i> Data Encrypted
+                <span class="badge-text"><i class="fas fa-lock"></i> SSL Secure</span> |
+                <span class="badge-text"><i class="fas fa-shield-alt"></i> Data Encrypted</span>
             </div>
         </section>
+
+        <style>
+            .security-badges {
+                margin-top: 10px;
+            }
+
+            .badge-text {
+                color: white;
+                font-weight: bold;
+                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+                /* Black outline effect */
+            }
+
+            /* Lighter green button styling */
+            .btn-custom {
+                background-color: #8bc34a;
+                /* Lighter green color */
+                border-color: #7cb342;
+                padding: 15px 30px;
+                /* Increased vertical padding, reduced horizontal padding */
+                font-size: 1.2rem;
+                /* Slightly larger text */
+                border-radius: 8px;
+                /* Rounded corners */
+                width: auto;
+                /* Makes the button shorter horizontally */
+            }
+
+            .btn-custom:hover {
+                background-color: #7cb342;
+                /* Darker green on hover */
+                border-color: #689f38;
+            }
+        </style>
+
 
 
         <section id="how-it-works" class="bg-white py-3 rounded shadow-sm">
