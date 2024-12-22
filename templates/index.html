@@ -8,8 +8,175 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Modern gradient backgrounds */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0062cc 0%, #0033cc 100%);
+            color: white;
+            padding: 5rem 0;
+        }
+
+        /* Clean, modern stat boxes */
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Professional buttons */
+        .btn-primary {
+            background-color: white;
+            color: #0062cc;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #f8f9fa;
+            color: #0033cc;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-light {
+            border-width: 2px;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+        }
+
+        /* Feature cards */
+        .feature-card {
+            padding: 2rem;
+            text-align: center;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #0062cc;
+            margin-bottom: 1rem;
+        }
+
+        /* Updated Process section styles */
+        .process-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .process-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .process-item.active {
+            border-left: 4px solid #0062cc;
+            background-color: #f8f9fa;
+        }
+
+        .process-number {
+            width: 40px;
+            height: 40px;
+            background: #0062cc;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .process-image {
+            display: none;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .process-image.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Form styling */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control {
+            padding: 0.8rem;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+
+        .form-control:focus {
+            border-color: #0062cc;
+            box-shadow: 0 0 0 0.2rem rgba(0, 98, 204, 0.25);
+        }
+
+        /* Security badges */
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 0 0.5rem;
+        }
+
+        .security-badge i {
+            margin-right: 0.5rem;
+        }
+    </style>
 
     <!-- Google Analytics Tag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXYPHH1JZQ"></script>
@@ -19,403 +186,221 @@
         gtag('js', new Date());
         gtag('config', 'G-ZXYPHH1JZQ');
     </script>
-
-    <style>
-        .stats-number {
-            color: green;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        #stats {
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        #stats h5 {
-            font-size: 1.2rem;
-            color: black;
-            /* Stat headers are now black */
-            margin-bottom: 5px;
-        }
-
-        .stat-box {
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            min-width: 120px;
-        }
-
-        @media (max-width: 576px) {
-            .stat-box {
-                min-width: 100px;
-            }
-
-            .stats-number {
-                font-size: 1rem;
-            }
-
-            #stats h5 {
-                font-size: 0.9rem;
-            }
-        }
-
-        .collapse {
-            background-color: inherit;
-        }
-    </style>
 </head>
 
-<body class="bg-light">
-    <div class="container my-5">
-        <header class="text-center bg-primary text-white p-4 rounded">
-            <img src="{{ url_for('static', filename='datagiftlogo.png') }}" alt="DataGift Logo"
-                style="width: 100%; max-width: 450px; height: auto;">
-            <div class="icon-container my-3">
-            </div>
-            <p>Your all-in-one tool for gathering data and rewarding your customers.</p>
-            <div class="button-group">
-                <!-- LinkedIn Button with Logo -->
-                <a href="https://www.linkedin.com/company/datagift" class="btn btn-primary custom-btn" target="_blank"
-                    rel="noopener noreferrer">
-                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"
-                        style="width: 20px; height: 20px; vertical-align: middle;">
-                    Follow us on LinkedIn
-                </a>
-            </div>
-
-            <!-- Add custom styles to the buttons -->
-            <style>
-                .custom-btn {
-                    background-color: white !important;
-                    color: green !important;
-                    border: 2px solid green;
-                }
-
-                .custom-btn img {
-                    filter: invert(40%) sepia(100%) saturate(1000%) hue-rotate(100deg) brightness(85%) contrast(80%);
-                }
-
-                .custom-btn:hover {
-                    background-color: green !important;
-                    color: white !important;
-                }
-            </style>
-
-
-
-            <!-- Smaller Stats Section Inside Header -->
-            <div id="stats" class="text-center">
-                <div class="stat-box">
-                    <h5>Response Rate</h5>
-                    <span id="surveyRate" class="stats-number">+0%</span>
-                </div>
-                <div class="stat-box">
-                    <h5>Rewards Paid</h5>
-                    <span id="customersRewarded" class="stats-number">+0</span>
-                </div>
-                <div class="stat-box">
-                    <h5>Surveys Completed</h5>
-                    <span id="otherStat" class="stats-number">+0</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- Add custom styles to the header
-        <section id="about" class="py-5">
-            <div class="row mt-4">
-                <div class="col-md-4 text-center">
-                    <i class="fas fa-chart-line fa-3x text-primary"></i>
-                    <h3 class="mt-3">Data Collection</h3>
-                    <p>Consistently gather high-quality data from your customers.</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <i class="fas fa-gift fa-3x text-primary"></i>
-                    <h3 class="mt-3">Customer Rewards</h3>
-                    <p>Reward your customers for their time helping your product improve.</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <i class="fas fa-shield-alt fa-3x text-primary"></i>
-                    <h3 class="mt-3">Security</h3>
-                    <p>Workflow and security features to prevent bots, spam, and low quality responses.</p>
-                </div>
-            </div>
-        </section>
-         -->
-
-        <section id="how-it-works" class="py-3 rounded shadow-sm">
-            <h2 class="text-center text-primary">How does it work?</h2>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-gradient">
+        <div class="container">
             <div class="text-center">
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#howItWorksContent" aria-expanded="false" aria-controls="howItWorksContent">Read
-                    More</button>
-            </div>
+                <img src="{{ url_for('static', filename='datagiftlogo.png') }}" alt="DataGift Logo"
+                    class="img-fluid mb-4" style="max-width: 450px;">
+                <h1 class="display-4 fw-bold mb-4">Transform Customer Feedback into Valuable Insights</h1>
+                <p class="lead mb-5">Your all-in-one platform for gathering high-quality data while rewarding customer
+                    engagement</p>
 
-            <div class="collapse mt-2" id="howItWorksContent">
-                <div class="px-4">
-                    <p>Many businesses struggle to collect high-quality feedback. Traditional methods involve sending
-                        mass
-                        survey emails, which only yield responses about 10-30% of the time. That's a lot of customers
-                        left
-                        out!</p>
-                    <p>DataGift takes a different approach. Instead of casting a wide net, we target specific customers,
-                        creating a marketplace where you buy valuable feedback. For your business, it's about acquiring
-                        quality data; for customers, it's a reward for their honest opinions—a win-win.</p>
-                    <p>As a business, you would follow this process:</p>
-                    <ol style="margin-left: 20px;">
-                        <li>Create a detailed survey</li>
-                        <li>Set a USD reward amount</li>
-                        <li>Select your target audience</li>
-                        <li>Launch your survey</li>
-                        <li>Receive high-quality feedback</li>
-                        <li>Reward your customers with cash</li>
-                    </ol>
-                    <img src="{{ url_for('static', filename='customerflow.png') }}" alt="Customer Flow"
-                        class="img-fluid">
-                    <img src="{{ url_for('static', filename='bcvalue.png') }}" alt="Business and Customer Value"
-                        class="img-fluid">
+                <div class="d-flex justify-content-center gap-3 mb-5">
+                    <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/index" class="btn btn-primary btn-lg">
+                        Try Live Demo <i class="fas fa-external-link-alt ms-2"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/datagift" class="btn btn-outline-light btn-lg">
+                        Follow on LinkedIn <i class="fab fa-linkedin ms-2"></i>
+                    </a>
                 </div>
-            </div>
-        </section>
 
-        <section id="example-use-cases" class="py-3 rounded shadow-sm">
-            <h2 class="text-center text-primary">Example Use Cases</h2>
-            <div class="text-center">
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#useCasesContent" aria-expanded="false" aria-controls="useCasesContent">Read
-                    More</button>
-            </div>
-
-            <div class="collapse mt-2" id="useCasesContent">
-                <div class="px-4">
-                    <p><strong>Case 1: SaaS Product Enhancement</strong></p>
-                    <p>Company: A B2B software-as-a-service (SaaS) provider that offers project management tools.</p>
-                    <p>Problem: The company noticed a decline in customer retention and engagement but couldn’t identify
-                        the exact pain points through traditional surveys. Their response rates were low (about 15%),
-                        leaving them without actionable feedback.</p>
-                    <p>Solution: Using DataGift, they decided to reward customers with $5 for completing a 10-question
-                        survey about specific product features and pain points. The company targeted customers who had
-                        used
-                        the product for at least 6 months and had experienced certain features.</p>
-                    <p>Outcome: The survey achieved a 65% response rate, and the data revealed two major usability
-                        issues
-                        that the company was previously unaware of. With the detailed feedback, they implemented product
-                        updates that improved retention by 25% over the following quarter.</p>
-
-                    <p><strong>Case 2: Retail Product Launch</strong></p>
-                    <p>Company: An online clothing retailer planning to launch a new sustainable fashion line.</p>
-                    <p>Problem: The retailer needed feedback on customer preferences for colors, designs, and pricing
-                        but
-                        had struggled to gather meaningful insights from their email list, which typically generated a
-                        response rate of 12%.</p>
-                    <p>Solution: Through DataGift, the company created a survey targeting previous customers who had
-                        shown
-                        interest in eco-friendly products. They set a reward of $10 for completing a detailed survey on
-                        preferred materials, designs, and pricing structures for their upcoming product line.</p>
-                    <p>Outcome: The targeted audience responded enthusiastically, with a 70% response rate. Customers
-                        shared valuable feedback, helping the company choose the top 3 most desired product designs and
-                        optimal pricing points.</p>
-
-                    <p><strong>Case 3: Hospitality Customer Experience Improvement</strong></p>
-                    <p>Company: A luxury hotel chain looking to improve its guest experience, particularly around its
-                        spa
-                        and wellness services.</p>
-                    <p>Problem: The hotel had previously relied on post-stay email surveys, which yielded a low response
-                        rate of 18%. They struggled to understand why guests weren’t utilizing the spa services as much
-                        as
-                        expected.</p>
-                    <p>Solution: Through DataGift, the hotel targeted guests who had booked a spa package but didn’t use
-                        all the services. They created a detailed survey offering a $20 incentive for participants to
-                        share
-                        their reasons for not using the spa.</p>
-                    <p>Outcome: The hotel saw a 60% response rate, with feedback indicating that many guests found the
-                        spa
-                        booking process confusing. The hotel made key adjustments to its service flow and saw a 35%
-                        increase
-                        in spa bookings within the next two months.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="why-pay" class="py-3 rounded shadow-sm">
-            <h2 class="text-center text-primary">Why pay customers for their feedback?</h2>
-            <div class="text-center">
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#whyPayContent"
-                    aria-expanded="false" aria-controls="whyPayContent">Read More</button>
-            </div>
-
-            <div class="collapse mt-2" id="whyPayContent">
-                <div class="px-4">
-                    <p><strong>1. Increased Response Rates:</strong> Monetary incentives can significantly boost survey
-                        participation rates. Studies show that offering financial rewards increases the likelihood of
-                        response, with one study by Yu et al. (2017) reporting a 30% increase in response rates when a
-                        $10 incentive was offered. Even small incentives, such as $2, have been shown to nearly triple
-                        response rates compared to non-monetary incentives (Smith et al., 2021).</p>
-
-                    <p><strong>2. Cost-Effective Data Collection:</strong> While offering monetary rewards may seem
-                        expensive at first, it can reduce overall data collection costs by speeding up the process and
-                        ensuring higher-quality, actionable responses. A study by Sobolewski et al. (2024) demonstrated
-                        that offering a $5 incentive for online surveys struck the optimal balance between cost,
-                        response rates, and the time spent collecting data, proving to be the most cost-effective
-                        solution.</p>
-
-                    <p><strong>3. Better Data Quality Without Bias:</strong> There is a common concern that offering
-                        incentives might lead to biased or dishonest responses. However, research shows this is not the
-                        case. Yu et al. (2017) found no significant differences in response quality or completeness
-                        between incentivized and non-incentivized respondents. Monetary incentives, in fact, encourage
-                        participants to provide thoughtful, complete answers because they value the reward.</p>
-
-                    <p><strong>4. Broader Demographic Representation:</strong> Paying for feedback helps attract more
-                        diverse and representative respondents. According to studies, cash incentives increase
-                        participation across different demographic groups, leading to more balanced and representative
-                        data (Smith et al., 2021). This is particularly important for businesses looking to gather
-                        feedback from underrepresented or less engaged audiences.</p>
-
-                    <p><strong>5. Strengthening Customer Relationships:</strong> Offering monetary rewards for feedback
-                        fosters a positive relationship between businesses and their customers. Customers feel their
-                        opinions are valued, which enhances brand loyalty and trust. This mutually beneficial exchange
-                        can lead to repeat business and long-term customer engagement (Sobolewski et al., 2024).</p>
-
-                    <div class="px-4 text-muted mt-4 small">
-                        <p>References:</p>
-                        <ul>
-                            <li>Smith, M. G., Witte, M., Rocha, S., & Basner, M. (2021). Effectiveness of incentives and
-                                follow-up on increasing survey response rates and participation in field studies.</li>
-                            <li>Sobolewski, J., Rothschild, A., & Freeman, A. (2024). The impact of incentives on data
-                                collection for online surveys: Social media recruitment study.</li>
-                            <li>Yu, S., Alper, H. E., Nguyen, A.-M., Brackbill, R. M., Turner, L., Walker, D. J.,
-                                Maslow, C. B., & Zweig, K. C. (2017). The effectiveness of a monetary incentive offer on
-                                survey response rates and response completeness in a longitudinal study.</li>
-                        </ul>
+                <!-- Stats -->
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <div class="stat-box">
+                            <div class="stat-number" id="responseRate">+0%</div>
+                            <div class="text-white-50">Response Rate</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-box">
+                            <div class="stat-number" id="rewardsCount">+0</div>
+                            <div class="text-white-50">Customers Rewarded</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stat-box">
+                            <div class="stat-number" id="surveyCount">+0</div>
+                            <div class="text-white-50">Surveys Completed</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- Link to Live Demo on Heroku -->
-        <div class="text-center my-4">
-            <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/index" target="_blank"
-                class="btn btn-success btn-lg" rel="noopener noreferrer">
-                Try DataGift Live Demo
-            </a>
         </div>
-        <section id="cta" class="text-center py-5 bg-primary text-white rounded">
-            <h2>Interested in pricing? Contact us:</h2>
+    </section>
 
-            <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST" class="w-50 mx-auto">
-                <div class="mb-3">
-                    <label for="email" class="form-label text-white">Your email:</label>
-                    <input type="email" name="email" id="email" class="form-control" required>
+    <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose DataGift?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                        <h3 class="h4 mb-3">Data Collection</h3>
+                        <p class="text-muted">Consistently gather high-quality data from your customers with improved
+                            response rates.</p>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label text-white">Company name:</label>
-                    <textarea name="message" id="message" class="form-control" required></textarea>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-gift feature-icon"></i>
+                        <h3 class="h4 mb-3">Customer Rewards</h3>
+                        <p class="text-muted">Build loyalty by rewarding customers for their valuable time and feedback.
+                        </p>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-custom w-auto">Send</button>
-            </form>
-
-            <div class="security-badges mt-4">
-                <span class="badge-text"><i class="fas fa-lock"></i> SSL Secure</span> |
-                <span class="badge-text"><i class="fas fa-shield-alt"></i> Data Encrypted</span>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt feature-icon"></i>
+                        <h3 class="h4 mb-3">Enterprise Security</h3>
+                        <p class="text-muted">Advanced security features prevent bots, spam, and ensure quality
+                            responses.</p>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <style>
-            .security-badges {
-                margin-top: 10px;
-            }
+    <!-- Updated Process Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">How It Works</h2>
+            <div class="row">
+                <div class="col-lg-5">
+                    <!-- Steps on the left -->
+                    <div class="process-items">
+                        <div class="process-item active" data-step="1">
+                            <div class="process-number">1</div>
+                            <div>Create detailed surveys tailored to your needs</div>
+                        </div>
+                        <div class="process-item" data-step="2">
+                            <div class="process-number">2</div>
+                            <div>Set competitive reward amounts in USD</div>
+                        </div>
+                        <div class="process-item" data-step="3">
+                            <div class="process-number">3</div>
+                            <div>Target specific customer segments</div>
+                        </div>
+                        <div class="process-item" data-step="4">
+                            <div class="process-number">4</div>
+                            <div>Receive high-quality feedback</div>
+                        </div>
+                        <div class="process-item" data-step="5">
+                            <div class="process-number">5</div>
+                            <div>Automatically reward participants</div>
+                        </div>
+                    </div>
+                </div>
 
-            .badge-text {
-                color: white;
-                font-weight: bold;
-                text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-                /* Black outline effect */
-            }
+                <div class="col-lg-7">
+                    <!-- Screenshots on the right -->
+                    <div class="process-images">
+                        <img src="{{ url_for('static', filename='step1.png') }}" alt="Create Survey"
+                            class="process-image active">
+                        <img src="{{ url_for('static', filename='step1.png') }}" alt="Set Rewards"
+                            class="process-image">
+                        <img src="{{ url_for('static', filename='step3.png') }}" alt="Target Segments"
+                            class="process-image">
+                        <img src="{{ url_for('static', filename='step4.png') }}" alt="Receive Feedback"
+                            class="process-image">
+                        <img src="{{ url_for('static', filename='step5.png') }}" alt="Reward Participants"
+                            class="process-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            /* Lighter green button styling */
-            .btn-custom {
-                background-color: #8bc34a;
-                /* Lighter green color */
-                border-color: #7cb342;
-                padding: 15px 30px;
-                /* Increased vertical padding, reduced horizontal padding */
-                font-size: 1.2rem;
-                /* Slightly larger text */
-                border-radius: 8px;
-                /* Rounded corners */
-                width: auto;
-                /* Makes the button shorter horizontally */
-            }
+    <!-- CTA Section -->
+    <section class="hero-gradient">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-4">Ready to Transform Your Customer Feedback?</h2>
+                    <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST" class="contact-form">
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Your business email"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="company" class="form-control" placeholder="Company name" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100">Get Started</button>
+                    </form>
 
-            .btn-custom:hover {
-                background-color: #7cb342;
-                /* Darker green on hover */
-                border-color: #689f38;
-            }
-        </style>
+                    <div class="mt-4">
+                        <span class="security-badge">
+                            <i class="fas fa-lock"></i> SSL Secure
+                        </span>
+                        <span class="security-badge">
+                            <i class="fas fa-shield-alt"></i> Data Encrypted
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-
-
-
-        <footer class="text-center text-muted py-3">
-            <p>&copy; 2024 DataGift. All rights reserved.</p>
-        </footer>
-    </div>
+    <footer class="py-4 bg-light">
+        <div class="container text-center">
+            <p class="text-muted mb-0">&copy; 2024 DataGift. All rights reserved.</p>
+        </div>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Script for live stats animation -->
+    <!-- Animation Script -->
     <script>
-        // Function to animate numbers increment
         function animateValue(id, start, end, duration, suffix = '') {
-            let element = document.getElementById(id);
-            let range = end - start;
+            const element = document.getElementById(id);
+            const range = end - start;
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
             let current = start;
-            let increment = end > start ? 1 : -1;
-            let stepTime = Math.abs(Math.floor(duration / range));
 
-            let timer = setInterval(function () {
+            const timer = setInterval(function () {
                 current += increment;
-                element.innerHTML = '+' + current + suffix; // Adding + sign here
-                if (current == end) {
+                element.textContent = '+' + current + suffix;
+                if (current === end) {
                     clearInterval(timer);
                 }
             }, stepTime);
         }
 
-        // Animate the stats on page load
+        // Start animations when page loads
         window.onload = function () {
-            animateValue("surveyRate", 10, 45, 6000, '%');
-            animateValue("customersRewarded", 0, 4, 7500);
-            animateValue("otherStat", 0, 22, 9000, ''); // Placeholder for another stat
+            animateValue("responseRate", 0, 45, 2000, '%');
+            animateValue("rewardsCount", 0, 4, 2000);
+            animateValue("surveyCount", 0, 22, 2000);
+
+            // Add process section interactivity
+            const items = document.querySelectorAll('.process-item');
+            const images = document.querySelectorAll('.process-image');
+
+            // Show first image by default and hide others
+            images[0].classList.add('active');
+
+            items.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => {
+                    // Update active states for items
+                    items.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+
+                    // Update active states for images
+                    images.forEach(img => img.classList.remove('active'));
+                    if (images[index]) {
+                        images[index].classList.add('active');
+                    }
+                });
+            });
         };
     </script>
-    <script type="text/javascript">
-        _linkedin_partner_id = "6541868";
-        window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-        window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-    </script>
-    <script type="text/javascript">
-        (function (l) {
-            if (!l) {
-                window.lintrk = function (a, b) { window.lintrk.q.push([a, b]) };
-                window.lintrk.q = []
-            }
-            var s = document.getElementsByTagName("script")[0];
-            var b = document.createElement("script");
-            b.type = "text/javascript"; b.async = true;
-            b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-            s.parentNode.insertBefore(b, s);
-        })(window.lintrk);
-    </script>
-    <noscript>
-        <img height="1" width="1" style="display:none;" alt=""
-            src="https://px.ads.linkedin.com/collect/?pid=6541868&fmt=gif" />
-    </noscript>
-</body>
 
-</html>
+    <!-- LinkedIn Tag -->
+    <script type="text/javascript">
