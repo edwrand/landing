@@ -13,7 +13,7 @@
 
     <style>
         /* 
-      Modern gradient backgrounds 
+      Modern gradient backgrounds
       Reduced padding on smaller screens 
     */
         .hero-gradient {
@@ -26,6 +26,35 @@
             .hero-gradient {
                 padding: 2rem 1rem;
                 /* Tighter spacing on smaller devices */
+            }
+        }
+
+        /* Custom dynamic logo sizing */
+        .datagift-logo {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Increase max-width at different breakpoints:
+       - Up to 576px (x-small devices), no max-width (full width).
+       - 576px+: max-width 300px
+       - 768px+: max-width 350px
+       - 992px+: max-width 450px */
+        @media (min-width: 576px) {
+            .datagift-logo {
+                max-width: 300px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .datagift-logo {
+                max-width: 350px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .datagift-logo {
+                max-width: 450px;
             }
         }
 
@@ -203,9 +232,9 @@
     <section class="hero-gradient">
         <div class="container">
             <div class="text-center">
-                <!-- Logo is already responsive due to .img-fluid -->
+                <!-- Updated logo using the .datagift-logo class -->
                 <img src="{{ url_for('static', filename='datagiftlogo.png') }}" alt="DataGift Logo"
-                    class="img-fluid mb-4" style="max-width: 450px;">
+                    class="img-fluid datagift-logo mb-4">
                 <h1 class="display-5 fw-bold mb-4">Unlock Customer Insights with Cash-Powered Surveys</h1>
                 <p class="lead mb-5">
                     Your all-in-one platform for gathering high-quality data while rewarding customer engagement
@@ -225,7 +254,7 @@
                 </div>
 
                 <!-- Stats -->
-                <!-- Use col-sm-12 so that each stat box will take full width on mobile -->
+                <!-- Use col-sm-12 so each stat box will take full width on mobile -->
                 <div class="row g-4 justify-content-center">
                     <div class="col-sm-12 col-md-4">
                         <div class="stat-box">
@@ -254,7 +283,6 @@
     <section class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-5">Why Choose DataGift?</h2>
-            <!-- Use col-sm-12 col-md-4 so each card stacks on small screens -->
             <div class="row g-4">
                 <div class="col-sm-12 col-md-4">
                     <div class="feature-card">
@@ -292,7 +320,6 @@
         <div class="container">
             <h2 class="text-center mb-5">How It Works</h2>
             <div class="row">
-                <!-- Use col-sm-12 col-lg-5 so that on smaller screens the process items go full width -->
                 <div class="col-sm-12 col-lg-5">
                     <div class="process-items">
                         <div class="process-item active" data-step="1">
@@ -318,7 +345,6 @@
                     </div>
                 </div>
 
-                <!-- Use col-sm-12 col-lg-7 for the images so they stack under the items on mobile -->
                 <div class="col-sm-12 col-lg-7">
                     <div class="process-images">
                         <img src="{{ url_for('static', filename='step1.png') }}" alt="Create Survey"
@@ -341,7 +367,6 @@
     <section class="hero-gradient">
         <div class="container">
             <div class="row justify-content-center">
-                <!-- Use col-sm-12 so on mobile the form uses full width -->
                 <div class="col-sm-12 col-md-8 text-center">
                     <h2 class="mb-4">Ready to Transform Your Customer Feedback?</h2>
                     <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST"
