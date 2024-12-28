@@ -292,41 +292,48 @@
     <!-- Features Section -->
     <section class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-5">Why Choose DataGift?</h2>
+            <!-- Main Heading -->
+            <h2 class="text-center mb-4">
+                DataGift in a nutshell: attach USD rewards to your feedback surveys
+            </h2>
+
+            <!-- Subheading / Description -->
+            <p class="text-center lead mb-5">
+                Increase response rates by 2x+, gather higher quality responses when users are
+                properly incentivized, and build brand loyalty by rewarding participants for
+                their time.
+            </p>
+
+            <!-- Two Images Side by Side -->
             <div class="row g-4">
-                <div class="col-sm-12 col-md-4">
+                <!-- Non-Incentivized Survey -->
+                <div class="col-sm-12 col-md-6">
                     <div class="feature-card">
-                        <i class="fas fa-chart-line feature-icon"></i>
-                        <h3 class="h4 mb-3">Data Collection</h3>
+                        <img src="{{ url_for('static', filename='examplesurvey.png') }}" alt="Non-Incentivized Survey"
+                            class="img-fluid" />
+                        <h3 class="h4 mt-3 mb-2">Typical Survey (Non-Incentivized)</h3>
                         <p class="text-muted">
-                            Consistently gather high-quality data from your customers with
-                            improved response rates.
+                            Standard surveys often have lower engagement and completion rates.
                         </p>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4">
+
+                <!-- Incentivized Survey -->
+                <div class="col-sm-12 col-md-6">
                     <div class="feature-card">
-                        <i class="fas fa-gift feature-icon"></i>
-                        <h3 class="h4 mb-3">Customer Rewards</h3>
+                        <img src="{{ url_for('static', filename='datagiftsurvey.png') }}"
+                            alt="DataGift USD Incentivized Survey" class="img-fluid" />
+                        <h3 class="h4 mt-3 mb-2">Incentivized Survey (DataGift)</h3>
                         <p class="text-muted">
-                            Build loyalty by rewarding customers for their valuable time and
-                            feedback.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <div class="feature-card">
-                        <i class="fas fa-shield-alt feature-icon"></i>
-                        <h3 class="h4 mb-3">Enterprise Security</h3>
-                        <p class="text-muted">
-                            Advanced security features prevent bots, spam, and ensure quality
-                            responses.
+                            With USD rewards, DataGift boosts participation and ensures higher
+                            quality feedback.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Updated Process Section -->
     <section class="py-5">
