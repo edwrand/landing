@@ -219,14 +219,14 @@
     </style>
 
     <!-- Google Analytics Tag -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXYPHH1JZQ"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVQY1K0JSG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
             dataLayer.push(arguments);
         }
         gtag("js", new Date());
-        gtag("config", "G-ZXYPHH1JZQ");
+        gtag("config", "G-EVQY1K0JSG");
     </script>
 </head>
 
@@ -389,22 +389,19 @@
                             Get Started
                         </button>
                         <!-- Reassurance: minimal friction -->
-                        <p class="mt-2 mb-0" style="font-size: 0.9rem; color: #f8f9fa;">
+                        <p class="mt-2 mb-0" style="font-size: 0.9rem; color: black;">
                             We value your privacy. No spam, unsubscribe at any time.
                         </p>
                     </form>
 
-                    <!-- (Optional) Example GA event on form submission 
-                   You can uncomment and customize for Google Ads or Google Analytics
-                <script>
-                  document.getElementById('cta-form').addEventListener('submit', function(){
-                    gtag('event', 'generate_lead', {
-                      'event_category': 'form',
-                      'event_label': 'formspree_submission'
-                    });
-                  });
-                </script>
-              -->
+                    <script>
+                        document.getElementById('cta-form').addEventListener('submit', function () {
+                            gtag('event', 'generate_lead', {
+                                'event_category': 'form',
+                                'event_label': 'formspree_submission'
+                            });
+                        });
+                    </script>
 
                     <div class="mt-4">
                         <span class="security-badge">
