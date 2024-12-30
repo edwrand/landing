@@ -238,6 +238,7 @@
 
     <!-- 3) Event snippet for Sign-up conversion -->
     <script>
+        // Changed return false; --> return true;
         function gtag_report_conversion(url) {
             var callback = function () {
                 if (typeof (url) != 'undefined') {
@@ -248,7 +249,7 @@
                 'send_to': 'AW-11523869380/MzY7CI3v3v0ZEMSVgfcq',
                 'event_callback': callback
             });
-            return false;
+            return true; // <-- Now it returns true instead of false, so the form can submit
         }
     </script>
 </head>
@@ -530,25 +531,25 @@
             animateValue("rewardsCount", 0, 4, 2000);
             animateValue("surveyCount", 0, 22, 2000);
 
-            // Process section interactivity
-            const items = document.querySelectorAll(".process-item");
-            const images = document.querySelectorAll(".process-image");
+            // Add process section interactivity
+            const items = document.querySelectorAll('.process-item');
+            const images = document.querySelectorAll('.process-image');
 
             // Show first image by default
             if (images.length) {
-                images[0].classList.add("active");
+                images[0].classList.add('active');
             }
 
             items.forEach((item, index) => {
-                item.addEventListener("mouseenter", () => {
-                    // Update item states
-                    items.forEach((i) => i.classList.remove("active"));
-                    item.classList.add("active");
+                item.addEventListener('mouseenter', () => {
+                    // Update active states for items
+                    items.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
 
-                    // Update image states
-                    images.forEach((img) => img.classList.remove("active"));
+                    // Update active states for images
+                    images.forEach(img => img.classList.remove('active'));
                     if (images[index]) {
-                        images[index].classList.add("active");
+                        images[index].classList.add('active');
                     }
                 });
             });
