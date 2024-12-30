@@ -13,9 +13,9 @@
 
     <style>
         /* 
-      Modern gradient backgrounds
-      Reduced padding on smaller screens 
-    */
+          Modern gradient backgrounds
+          Reduced padding on smaller screens 
+        */
         .hero-gradient {
             background: linear-gradient(135deg, #0062cc 0%, #0033cc 100%);
             color: white;
@@ -35,12 +35,12 @@
         }
 
         /* 
-      Increase max-width at different breakpoints:
-      - Up to 576px (x-small devices), no max-width (full width).
-      - 576px+: max-width 300px
-      - 768px+: max-width 350px
-      - 992px+: max-width 450px
-    */
+          Increase max-width at different breakpoints:
+          - Up to 576px (x-small devices), no max-width (full width).
+          - 576px+: max-width 300px
+          - 768px+: max-width 350px
+          - 992px+: max-width 450px
+        */
         @media (min-width: 576px) {
             .datagift-logo {
                 max-width: 300px;
@@ -218,7 +218,7 @@
         }
     </style>
 
-    <!-- Google Analytics Tag -->
+    <!-- 1) Google Analytics Tag (already in place) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVQY1K0JSG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -227,6 +227,29 @@
         }
         gtag("js", new Date());
         gtag("config", "G-EVQY1K0JSG");
+    </script>
+
+    <!-- 2) Google Ads Tag (AW-11523869380) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11523869380"></script>
+    <script>
+        // Reuse the same gtag() function
+        gtag('config', 'AW-11523869380');
+    </script>
+
+    <!-- 3) Event snippet for Sign-up conversion -->
+    <script>
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof (url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                'send_to': 'AW-11523869380/MzY7CI3v3v0ZEMSVgfcq',
+                'event_callback': callback
+            });
+            return false;
+        }
     </script>
 </head>
 
@@ -375,8 +398,14 @@
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-8 text-center">
                     <h2 class="mb-4">Ready to Transform Your Customer Feedback?</h2>
+                    <!-- 
+                      4) For the Google Ads conversion event snippet to fire, 
+                         use onsubmit="return gtag_report_conversion()" 
+                         OR call that function in the JS below.
+                    -->
                     <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST"
-                        class="contact-form mx-auto" style="max-width: 500px;">
+                        class="contact-form mx-auto" style="max-width: 500px;"
+                        onsubmit="return gtag_report_conversion()">
                         <div class="mb-3">
                             <input type="email" name="email" class="form-control" placeholder="Your business email"
                                 required />
@@ -394,6 +423,7 @@
                         </p>
                     </form>
 
+                    <!-- If you want to track a GA4 "generate_lead" event separately as well -->
                     <script>
                         document.getElementById('cta-form').addEventListener('submit', function () {
                             gtag('event', 'generate_lead', {
@@ -464,7 +494,7 @@
             </div>
         </div>
     </section>
--->
+    -->
 
     <!-- Footer -->
     <footer class="py-4 bg-light">
@@ -505,7 +535,9 @@
             const images = document.querySelectorAll(".process-image");
 
             // Show first image by default
-            images[0].classList.add("active");
+            if (images.length) {
+                images[0].classList.add("active");
+            }
 
             items.forEach((item, index) => {
                 item.addEventListener("mouseenter", () => {
