@@ -271,13 +271,11 @@
 
                 <!-- Hero Buttons -->
                 <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mb-5">
-                    <!-- 
-                      <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/index" 
-                         class="btn btn-primary btn-lg">
-                         Try Live Demo
-                         <i class="fas fa-external-link-alt ms-2"></i>
-                      </a> 
-                    -->
+                    <!-- <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/index" class="btn btn-primary btn-lg">
+                        Try Live Demo
+                        <i class="fas fa-external-link-alt ms-2"></i>
+                    </a> -->
+                    <!-- LinkedIn Follow Button -->
                     <a href="https://www.linkedin.com/company/datagift" class="btn btn-outline-light btn-lg"
                         target="_blank" rel="noopener noreferrer">
                         Follow on LinkedIn
@@ -287,6 +285,7 @@
                         Sign Up for free early access
                         <i class="fas fa-arrow-down ms-2"></i>
                     </a>
+
                 </div>
 
                 <!-- Stats -->
@@ -320,7 +319,9 @@
         .equal-image {
             width: 100%;
             max-height: 350px;
+            /* Adjust as desired */
             object-fit: contain;
+            /* Scale without cropping or stretching */
             display: block;
             margin: 0 auto;
         }
@@ -336,6 +337,7 @@
 
             <!-- Benefits Box -->
             <div class="text-center lead mb-5">
+                <!-- Center the box and cap its max width -->
                 <div class="mx-auto p-4 bg-white rounded shadow-sm" style="max-width: 650px;">
                     <h4 class="fw-bold mb-3">Key Benefits</h4>
                     <ul class="list-unstyled text-start mb-0">
@@ -366,8 +368,8 @@
                             Typical Survey (Non-Incentivized)
                         </h3>
                         <p class="text-muted mb-0">
-                            Standard surveys often have lower engagement and completion
-                            rates due to a lack of tangible incentives.
+                            Standard surveys often have lower engagement and completion rates
+                            due to a lack of tangible incentives.
                         </p>
                     </div>
                 </div>
@@ -381,9 +383,8 @@
                             Incentivized Survey (DataGift)
                         </h3>
                         <p class="text-muted mb-0">
-                            By attaching USD rewards, DataGift significantly boosts
-                            response rates and ensures more thoughtful, high-quality
-                            feedback.
+                            By attaching USD rewards, DataGift significantly boosts response
+                            rates and ensures more thoughtful, high-quality feedback.
                         </p>
                     </div>
                 </div>
@@ -391,16 +392,21 @@
         </div>
     </section>
 
+
     <!-- CTA Section -->
     <section class="hero-gradient">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-8 text-center">
                     <h2 class="mb-4">Leave your email for FREE early access!</h2>
-
-                    <!-- The main sign-up form -->
+                    <!-- 
+                      4) For the Google Ads conversion event snippet to fire, 
+                         use onsubmit="return gtag_report_conversion()" 
+                         OR call that function in the JS below.
+                    -->
                     <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST"
-                        class="contact-form mx-auto" style="max-width: 500px;">
+                        class="contact-form mx-auto" style="max-width: 500px;"
+                        onsubmit="return gtag_report_conversion()">
                         <div class="mb-3">
                             <input type="email" name="email" class="form-control" placeholder="Your business email"
                                 required />
@@ -412,54 +418,19 @@
                         <button type="submit" class="btn btn-primary btn-lg w-100">
                             Get Started
                         </button>
+                        <!-- Reassurance: minimal friction -->
                         <p class="mt-2 mb-0" style="font-size: 0.9rem; color: black;">
                             We value your privacy. No spam, unsubscribe at any time.
                         </p>
                     </form>
 
-                    <!-- Hidden link to the live app (shown after successful submission) -->
-                    <div id="liveAppLink" class="mt-4 alert alert-success" style="display: none;">
-                        <strong>Thanks for signing up!</strong> Try the live version now:
-                        <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/" target="_blank" class="fw-bold">
-                            Launch DataGift App
-                        </a>
-                    </div>
-
-                    <!-- Script to handle form submission, show link, and track conversions -->
+                    <!-- If you want to track a GA4 "generate_lead" event separately as well -->
                     <script>
-                        const form = document.getElementById("cta-form");
-                        form.addEventListener("submit", async function (e) {
-                            e.preventDefault();
-
-                            // Fire Google Ads conversion
-                            gtag_report_conversion();
-
-                            // Fire GA4 'generate_lead' event
+                        document.getElementById('cta-form').addEventListener('submit', function () {
                             gtag('event', 'generate_lead', {
                                 'event_category': 'form',
                                 'event_label': 'formspree_submission'
                             });
-
-                            // Submit form data to Formspree
-                            const formData = new FormData(form);
-                            try {
-                                const response = await fetch(form.action, {
-                                    method: "POST",
-                                    body: formData
-                                });
-
-                                if (response.ok) {
-                                    // Hide the form
-                                    form.style.display = "none";
-                                    // Show the link to the live app
-                                    document.getElementById("liveAppLink").style.display = "block";
-                                } else {
-                                    alert("Oops, something went wrong. Please try again later.");
-                                }
-                            } catch (error) {
-                                console.error("Error submitting form:", error);
-                                alert("Unable to submit form. Please try again later.");
-                            }
                         });
                     </script>
 
@@ -476,69 +447,6 @@
         </div>
     </section>
 
-    <!-- Updated Process Section (Optional) -->
-    <!--
-    <section class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">How It Works</h2>
-            <div class="row">
-                <div class="col-sm-12 col-lg-5">
-                    <div class="process-items">
-                        <div class="process-item active" data-step="1">
-                            <div class="process-number">1</div>
-                            <div>Create detailed surveys tailored to your needs</div>
-                        </div>
-                        <div class="process-item" data-step="2">
-                            <div class="process-number">2</div>
-                            <div>Set competitive reward amounts in USD</div>
-                        </div>
-                        <div class="process-item" data-step="3">
-                            <div class="process-number">3</div>
-                            <div>Target specific customer segments</div>
-                        </div>
-                        <div class="process-item" data-step="4">
-                            <div class="process-number">4</div>
-                            <div>Receive high-quality feedback</div>
-                        </div>
-                        <div class="process-item" data-step="5">
-                            <div class="process-number">5</div>
-                            <div>Automatically reward participants</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-7">
-                    <div class="process-images">
-                        <img
-                          src="{{ url_for('static', filename='step1.png') }}"
-                          alt="Create Survey"
-                          class="process-image active img-fluid"
-                        />
-                        <img
-                          src="{{ url_for('static', filename='step1.png') }}"
-                          alt="Set Rewards"
-                          class="process-image img-fluid"
-                        />
-                        <img
-                          src="{{ url_for('static', filename='step3.png') }}"
-                          alt="Target Segments"
-                          class="process-image img-fluid"
-                        />
-                        <img
-                          src="{{ url_for('static', filename='step4.png') }}"
-                          alt="Receive Feedback"
-                          class="process-image img-fluid"
-                        />
-                        <img
-                          src="{{ url_for('static', filename='step5.png') }}"
-                          alt="Reward Participants"
-                          class="process-image img-fluid"
-                        />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    -->
 
     <!-- Footer -->
     <footer class="py-4 bg-light">
