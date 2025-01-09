@@ -400,10 +400,10 @@
                 <div class="col-sm-12 col-md-8 text-center">
                     <h2 class="mb-4">Leave your email for FREE early access!</h2>
                     <!-- 
-                      4) For the Google Ads conversion event snippet to fire, 
-                         use onsubmit="return gtag_report_conversion()" 
-                         OR call that function in the JS below.
-                    -->
+                  For the Google Ads conversion event snippet to fire, 
+                  use onsubmit="return gtag_report_conversion()" 
+                  OR call that function in the JS below.
+                -->
                     <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST"
                         class="contact-form mx-auto" style="max-width: 500px;"
                         onsubmit="return gtag_report_conversion()">
@@ -434,6 +434,7 @@
                         });
                     </script>
 
+                    <!-- Security badges -->
                     <div class="mt-4">
                         <span class="security-badge">
                             <i class="fas fa-lock"></i> SSL Secure
@@ -442,10 +443,19 @@
                             <i class="fas fa-shield-alt"></i> Data Encrypted
                         </span>
                     </div>
+
+                    <!-- Small div at the bottom for Live App link -->
+                    <div class="mt-4">
+                        <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/" class="btn btn-primary btn-sm"
+                            target="_blank" rel="noopener noreferrer">
+                            Try the Live App
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
 
     <!-- Footer -->
