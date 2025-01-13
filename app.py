@@ -1,17 +1,21 @@
 import os
 import sqlite3
-from flask import Flask, render_template, request, jsonify
+from flask import (
+    Flask, render_template, request, redirect,
+    url_for, flash  # flash for messaging
+)
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from dotenv import load_dotenv
-load_dotenv()  # This loads the .env file contents into environment variables
 
+load_dotenv()  # Loads .env variables into environment
 
 app = Flask(__name__)
 
-# Set your SendGrid key as an environment var: SENDGRID_API_KEY = '...'
-SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+# Needed for flashing messages (keep this secret in production)
+app.secret_key = "someRandomSecretKeyHere"
 
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 DB_NAME = "datagift.db"
 
 def init_db():
@@ -42,19 +46,19 @@ def home():
 @app.route('/subscribe', methods=['POST'])
 def subscribe():
     """
-    Single endpoint:
     1) Takes form data (email, company).
-    2) Stores in SQLite.
-    3) Sends an email via SendGrid.
-    4) Returns a quick HTML "thank you" (or JSON).
+    2) Saves to SQLite.
+    3) Sends an email via SendGrid dynamic template.
+    4) Flashes a success or error message, then redirects back to home.
     """
     email = request.form.get('email')
     company = request.form.get('company')
 
     if not email or not company:
-        return "<h3>Missing email or company</h3>", 400
+        flash("Missing email or company name.", "danger")
+        return redirect(url_for('home'))
 
-    # 1) Store in SQLite
+    # 1) Insert into SQLite DB
     try:
         conn = sqlite3.connect(DB_NAME)
         c = conn.cursor()
@@ -62,48 +66,41 @@ def subscribe():
         conn.commit()
         conn.close()
     except sqlite3.IntegrityError:
-        return "<h3>This email is already registered.</h3>", 409
+        flash("This email is already registered.", "warning")
+        return redirect(url_for('home'))
     except Exception as e:
-        return f"<h3>Error saving to DB: {str(e)}</h3>", 500
+        flash(f"Error saving to DB: {str(e)}", "danger")
+        return redirect(url_for('home'))
 
-    # 2) Send a welcome email with SendGrid
+    # 2) Send dynamic template email via SendGrid
     if SENDGRID_API_KEY:
+        # Build the message
         message = Mail(
-            from_email='your_verified_sender@datagift.app',  # Must match a verified sender in SendGrid
-            to_emails=email,
-            subject='Welcome to DataGift Early Access!',
-            html_content=f'''
-                <h1>Thanks for signing up, {company}!</h1>
-                <p>We appreciate your interest in DataGift. Check your inbox for updates and let us know if you have any questions.</p>
-                <p>- The DataGift Team</p>
-            '''
+            from_email='your_verified_sender@datagift.app',  # must be verified in SendGrid
+            to_emails=email
         )
+        # Use your dynamic template
+        message.template_id = 'd-b1925e2c902c4f39854855e222f38fb5'
+        # Pass placeholders that your template expects, e.g. {{company}}
+        message.dynamic_template_data = {
+            "company": company
+        }
+
         try:
             sg = SendGridAPIClient(SENDGRID_API_KEY)
             response = sg.send(message)
-            print("SendGrid response code:", response.status_code)
+            # Optional: flash a message about the response, or debug info
+            # flash(f"SendGrid response code: {response.status_code}", "info")
         except Exception as e:
-            print("Error sending email with SendGrid:", e)
+            flash(f"Error sending email: {str(e)}", "danger")
     else:
-        print("Warning: No SENDGRID_API_KEY set, email won't be sent.")
+        flash("Warning: No SENDGRID_API_KEY set, email not sent.", "warning")
 
-    # 3) Return a simple "Thank You" message (HTML)
-    #    Alternatively, you could return JSON or redirect somewhere else.
-    return """
-    <html>
-      <head>
-        <title>Thank You!</title>
-      </head>
-      <body style="font-family: sans-serif; margin: 2rem;">
-        <h2>Subscription Complete</h2>
-        <p>Thank you for signing up, check your inbox for our welcome email!</p>
-        <p><a href="/">Back to Home</a></p>
-      </body>
-    </html>
-    """, 200
+    # 3) Everything went well, flash success
+    flash("Thank you for signing up! Check your inbox for a welcome email.", "success")
+    # Then redirect back to home (index.html)
+    return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    # Heroku uses PORT env var
-    import sys
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
