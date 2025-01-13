@@ -3,6 +3,9 @@ import sqlite3
 from flask import Flask, render_template, request, jsonify
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from dotenv import load_dotenv
+load_dotenv()  # This loads the .env file contents into environment variables
+
 
 app = Flask(__name__)
 
