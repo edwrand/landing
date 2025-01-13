@@ -31,13 +31,7 @@
             height: auto;
         }
 
-        /* 
-          Increase max-width at different breakpoints:
-          - Up to 576px (x-small devices): no max-width (full width).
-          - 576px+: max-width 300px
-          - 768px+: max-width 350px
-          - 992px+: max-width 450px
-        */
+        /* Increase max-width at breakpoints */
         @media (min-width: 576px) {
             .datagift-logo {
                 max-width: 300px;
@@ -215,7 +209,7 @@
         }
     </style>
 
-    <!-- 1) Google Analytics Tag (already in place) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVQY1K0JSG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -226,16 +220,16 @@
         gtag("config", "G-EVQY1K0JSG");
     </script>
 
-    <!-- 2) Google Ads Tag (AW-11523869380) -->
+    <!-- Google Ads Tag (AW-11523869380) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11523869380"></script>
     <script>
         // Reuse the same gtag() function
         gtag("config", "AW-11523869380");
     </script>
 
-    <!-- 3) Event snippet for Sign-up conversion -->
+    <!-- Event snippet for Sign-up conversion -->
     <script>
-        // Return true so form can submit
+        // Ensure we allow form submission by returning true
         function gtag_report_conversion(url) {
             var callback = function () {
                 if (typeof url != "undefined") {
@@ -249,9 +243,26 @@
             return true;
         }
     </script>
+
+    <!-- Set a title for your landing page -->
+    <title>DataGift - Unlock Customer Insights</title>
 </head>
 
 <body>
+    <!-- A container for flash messages (Bootstrap Alerts) -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, msg in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
     <!-- Hero Section -->
     <section class="hero-gradient">
         <div class="container">
@@ -304,7 +315,7 @@
         </div>
     </section>
 
-    <!-- Additional styling if needed -->
+    <!-- Additional styling for images -->
     <style>
         .equal-image {
             width: 100%;
@@ -376,10 +387,10 @@
                     <h2 class="mb-4">Leave your email for FREE early access!</h2>
 
                     <!-- 
-                       Updated form:
-                       - action="/subscribe" points to your Flask route
-                       - method="POST"
-                       - onsubmit="return gtag_report_conversion()" for Google Ads tracking
+                       The form:
+                       action="/subscribe" points to your Flask route
+                       method="POST"
+                       onsubmit="return gtag_report_conversion()" for Google Ads
                     -->
                     <form id="cta-form" action="/subscribe" method="POST" class="contact-form mx-auto"
                         style="max-width: 500px;" onsubmit="return gtag_report_conversion()">
