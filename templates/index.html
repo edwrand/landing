@@ -271,10 +271,6 @@
 
                 <!-- Hero Buttons -->
                 <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mb-5">
-                    <!-- <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/index" class="btn btn-primary btn-lg">
-                        Try Live Demo
-                        <i class="fas fa-external-link-alt ms-2"></i>
-                    </a> -->
                     <!-- LinkedIn Follow Button -->
                     <a href="https://www.linkedin.com/company/datagift" class="btn btn-outline-light btn-lg"
                         target="_blank" rel="noopener noreferrer">
@@ -285,7 +281,6 @@
                         Sign Up for free early access
                         <i class="fas fa-arrow-down ms-2"></i>
                     </a>
-
                 </div>
 
                 <!-- Stats -->
@@ -313,15 +308,13 @@
         </div>
     </section>
 
-    <!-- Add this to your existing <style> block -->
+    <!-- Additional style -->
     <style>
         /* Forces all images with this class to share a common bounding box */
         .equal-image {
             width: 100%;
             max-height: 350px;
-            /* Adjust as desired */
             object-fit: contain;
-            /* Scale without cropping or stretching */
             display: block;
             margin: 0 auto;
         }
@@ -330,14 +323,10 @@
     <!-- Features Section -->
     <section class="py-5 bg-light">
         <div class="container">
-            <!-- Main Heading -->
             <h2 class="text-center mb-4 fw-bold">
                 Attach USD rewards to your feedback surveys with DataGift!
             </h2>
-
-            <!-- Benefits Box -->
             <div class="text-center lead mb-5">
-                <!-- Center the box and cap its max width -->
                 <div class="mx-auto p-4 bg-white rounded shadow-sm" style="max-width: 650px;">
                     <h4 class="fw-bold mb-3">Key Benefits</h4>
                     <ul class="list-unstyled text-start mb-0">
@@ -357,41 +346,32 @@
                 </div>
             </div>
 
-            <!-- Row for Side-by-Side Comparison -->
+            <!-- Side-by-Side Comparison -->
             <div class="row g-4">
-                <!-- Non-Incentivized Survey -->
                 <div class="col-sm-12 col-md-6">
                     <div class="feature-card">
                         <img src="{{ url_for('static', filename='examplesurvey.png') }}"
                             alt="Typical Survey (Non-Incentivized)" class="img-fluid rounded shadow-sm equal-image" />
-                        <h3 class="h5 mt-3 mb-2 text-dark">
-                            Typical Survey (Non-Incentivized)
-                        </h3>
+                        <h3 class="h5 mt-3 mb-2 text-dark">Typical Survey (Non-Incentivized)</h3>
                         <p class="text-muted mb-0">
-                            Standard surveys often have lower engagement and completion rates
-                            due to a lack of tangible incentives.
+                            Standard surveys often have lower engagement due to lack of tangible incentives.
                         </p>
                     </div>
                 </div>
-
-                <!-- Incentivized Survey -->
                 <div class="col-sm-12 col-md-6">
                     <div class="feature-card">
                         <img src="{{ url_for('static', filename='datagiftsurvey.png') }}"
                             alt="DataGift USD Incentivized Survey" class="img-fluid rounded shadow-sm equal-image" />
-                        <h3 class="h5 mt-3 mb-2 text-dark">
-                            Incentivized Survey (DataGift)
-                        </h3>
+                        <h3 class="h5 mt-3 mb-2 text-dark">Incentivized Survey (DataGift)</h3>
                         <p class="text-muted mb-0">
-                            By attaching USD rewards, DataGift significantly boosts response
-                            rates and ensures more thoughtful, high-quality feedback.
+                            By attaching USD rewards, DataGift significantly boosts response rates and ensures more
+                            thoughtful feedback.
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- CTA Section -->
     <section class="hero-gradient">
@@ -400,11 +380,11 @@
                 <div class="col-sm-12 col-md-8 text-center">
                     <h2 class="mb-4">Leave your email for FREE early access!</h2>
                     <!-- 
-                  For the Google Ads conversion event snippet to fire, 
-                  use onsubmit="return gtag_report_conversion()" 
-                  OR call that function in the JS below.
-                -->
-                    <form id="cta-form" action="https://formspree.io/f/mrbzjywo" method="POST"
+                       Replace the old Formspree URL with your Flask route:
+                       e.g. action="https://yourapp.herokuapp.com/subscribe"
+                       Still keep onsubmit="return gtag_report_conversion()" for Google Ads tracking if needed
+                    -->
+                    <form id="cta-form" action="https://yourapp.herokuapp.com/subscribe" method="POST"
                         class="contact-form mx-auto" style="max-width: 500px;"
                         onsubmit="return gtag_report_conversion()">
                         <div class="mb-3">
@@ -424,24 +404,26 @@
                         </p>
                     </form>
 
-                    <!-- If you want to track a GA4 "generate_lead" event separately as well -->
+                    <!-- GA4 event tracking script remains the same -->
                     <script>
                         document.getElementById('cta-form').addEventListener('submit', function () {
                             gtag('event', 'generate_lead', {
                                 'event_category': 'form',
-                                'event_label': 'formspree_submission'
+                                'event_label': 'sendgrid_submission'
                             });
                         });
                     </script>
 
-                    <!-- Small div at the bottom for Live App link -->
+                    <!-- Optional Link to Live App -->
                     <div class="mt-4">
                         <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/" class="btn btn-primary btn-sm"
                             target="_blank" rel="noopener noreferrer">
                             Try the Live App
                         </a>
                     </div>
-                    <br>
+
+                    <br />
+
                     <!-- Security badges -->
                     <div class="mt-4">
                         <span class="security-badge">
@@ -455,8 +437,6 @@
             </div>
         </div>
     </section>
-
-
 
     <!-- Footer -->
     <footer class="py-4 bg-light">
@@ -492,22 +472,19 @@
             animateValue("rewardsCount", 0, 4, 2000);
             animateValue("surveyCount", 0, 22, 2000);
 
-            // Add process section interactivity
+            // If you have a process section with interactive items:
             const items = document.querySelectorAll('.process-item');
             const images = document.querySelectorAll('.process-image');
 
-            // Show first image by default
             if (images.length) {
                 images[0].classList.add('active');
             }
 
             items.forEach((item, index) => {
                 item.addEventListener('mouseenter', () => {
-                    // Update active states for items
                     items.forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
 
-                    // Update active states for images
                     images.forEach(img => img.classList.remove('active'));
                     if (images[index]) {
                         images[index].classList.add('active');
