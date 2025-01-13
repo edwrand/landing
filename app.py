@@ -6,8 +6,7 @@ from sendgrid.helpers.mail import Mail
 
 app = Flask(__name__)
 
-# For Heroku, set your SendGrid API key in Config Vars:
-# SENDGRID_API_KEY = 'your-api-key-here'
+# Set your SendGrid key as an environment var: SENDGRID_API_KEY = '...'
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 
 DB_NAME = "datagift.db"
@@ -27,21 +26,32 @@ def init_db():
     conn.commit()
     conn.close()
 
+@app.before_first_request
+def setup_db():
+    """Ensure the table is created before handling any requests."""
+    init_db()
+
 @app.route('/')
 def home():
-    # Renders your landing page (index.html)
+    """Serve your main landing page (index.html)."""
     return render_template('index.html')
 
 @app.route('/subscribe', methods=['POST'])
 def subscribe():
-    """Receives form data: email & company, saves to DB, sends a welcome email."""
+    """
+    Single endpoint:
+    1) Takes form data (email, company).
+    2) Stores in SQLite.
+    3) Sends an email via SendGrid.
+    4) Returns a quick HTML "thank you" (or JSON).
+    """
     email = request.form.get('email')
     company = request.form.get('company')
 
     if not email or not company:
-        return jsonify({"error": "Missing email or company"}), 400
+        return "<h3>Missing email or company</h3>", 400
 
-    # Save to SQLite
+    # 1) Store in SQLite
     try:
         conn = sqlite3.connect(DB_NAME)
         c = conn.cursor()
@@ -49,37 +59,48 @@ def subscribe():
         conn.commit()
         conn.close()
     except sqlite3.IntegrityError:
-        return jsonify({"error": "Email already exists"}), 409
+        return "<h3>This email is already registered.</h3>", 409
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return f"<h3>Error saving to DB: {str(e)}</h3>", 500
 
-    # Send welcome email with SendGrid
-    if SENDGRID_API_KEY is None:
-        print("Warning: SENDGRID_API_KEY is not set. Email won't be sent.")
-    else:
+    # 2) Send a welcome email with SendGrid
+    if SENDGRID_API_KEY:
         message = Mail(
-            from_email='your_verified_sender@datagift.app',
+            from_email='your_verified_sender@datagift.app',  # Must match a verified sender in SendGrid
             to_emails=email,
             subject='Welcome to DataGift Early Access!',
             html_content=f'''
-            <h1>Thanks for signing up!</h1>
-            <p>We appreciate your interest in DataGift, <strong>{company}</strong>.</p>
-            <p>Please feel free to reply with any questions or feedback.</p>
-            <p>Best,<br/>DataGift Team</p>
+                <h1>Thanks for signing up, {company}!</h1>
+                <p>We appreciate your interest in DataGift. Check your inbox for updates and let us know if you have any questions.</p>
+                <p>- The DataGift Team</p>
             '''
         )
         try:
             sg = SendGridAPIClient(SENDGRID_API_KEY)
             response = sg.send(message)
-            print("SendGrid response:", response.status_code)
+            print("SendGrid response code:", response.status_code)
         except Exception as e:
             print("Error sending email with SendGrid:", e)
+    else:
+        print("Warning: No SENDGRID_API_KEY set, email won't be sent.")
 
-    return jsonify({"success": True, "message": "Subscription complete"}), 200
+    # 3) Return a simple "Thank You" message (HTML)
+    #    Alternatively, you could return JSON or redirect somewhere else.
+    return """
+    <html>
+      <head>
+        <title>Thank You!</title>
+      </head>
+      <body style="font-family: sans-serif; margin: 2rem;">
+        <h2>Subscription Complete</h2>
+        <p>Thank you for signing up, check your inbox for our welcome email!</p>
+        <p><a href="/">Back to Home</a></p>
+      </body>
+    </html>
+    """, 200
 
 if __name__ == '__main__':
-    # Ensure the DB is ready
-    init_db()
-
+    # Heroku uses PORT env var
+    import sys
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
