@@ -76,7 +76,7 @@ def subscribe():
     if SENDGRID_API_KEY:
         # Build the message
         message = Mail(
-            from_email='your_verified_sender@datagift.app',  # must be verified in SendGrid
+            from_email='datagift@datagift.app',  # must be verified in SendGrid
             to_emails=email
         )
         # Use your dynamic template
