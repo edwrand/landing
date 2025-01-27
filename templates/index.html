@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>DataGift</title>
+    <title>DataGift - Unlock Customer Insights</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -31,7 +31,6 @@
             height: auto;
         }
 
-        /* Increase max-width at breakpoints */
         @media (min-width: 576px) {
             .datagift-logo {
                 max-width: 300px;
@@ -48,27 +47,6 @@
             .datagift-logo {
                 max-width: 450px;
             }
-        }
-
-        /* Clean, modern stat boxes */
-        .stat-box {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 0.5rem;
         }
 
         /* Professional buttons */
@@ -113,7 +91,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Updated Process section styles */
+        /* Process section styles (if used) */
         .process-item {
             display: flex;
             align-items: center;
@@ -207,15 +185,22 @@
         .security-badge i {
             margin-right: 0.5rem;
         }
+
+        /* Additional styling for images */
+        .equal-image {
+            width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVQY1K0JSG"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+        function gtag() { dataLayer.push(arguments); }
         gtag("js", new Date());
         gtag("config", "G-EVQY1K0JSG");
     </script>
@@ -223,13 +208,11 @@
     <!-- Google Ads Tag (AW-11523869380) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11523869380"></script>
     <script>
-        // Reuse the same gtag() function
         gtag("config", "AW-11523869380");
     </script>
 
     <!-- Event snippet for Sign-up conversion -->
     <script>
-        // Ensure we allow form submission by returning true
         function gtag_report_conversion(url) {
             var callback = function () {
                 if (typeof url != "undefined") {
@@ -243,9 +226,6 @@
             return true;
         }
     </script>
-
-    <!-- Set a title for your landing page -->
-    <title>DataGift - Unlock Customer Insights</title>
 </head>
 
 <body>
@@ -274,57 +254,24 @@
                     Unlock Customer Insights with Cash-Powered Surveys
                 </h1>
                 <p class="lead mb-5">
-                    Your all-in-one platform for gathering high-quality data while rewarding customer engagement
+                    Gather high-quality data and reward participants with USD.
                 </p>
 
-                <!-- Hero Buttons -->
+                <!-- Hero Buttons (LinkedIn + single CTA) -->
                 <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mb-5">
                     <a href="https://www.linkedin.com/company/datagift" class="btn btn-outline-light btn-lg"
                         target="_blank" rel="noopener noreferrer">
                         Follow on LinkedIn
                         <i class="fab fa-linkedin ms-2"></i>
                     </a>
+                    <!-- Single CTA link that scrolls to form -->
                     <a href="#cta-form" class="btn btn-outline-light btn-lg">
-                        Sign Up for free early access
-                        <i class="fas fa-arrow-down ms-2"></i>
+                        Sign up to try the live app for free
                     </a>
-                </div>
-
-                <!-- Stats -->
-                <div class="row g-4 justify-content-center">
-                    <div class="col-sm-12 col-md-4">
-                        <div class="stat-box">
-                            <div class="stat-number" id="responseRate">+0%</div>
-                            <div class="text-white-50">Response Rate</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        <div class="stat-box">
-                            <div class="stat-number" id="rewardsCount">+0</div>
-                            <div class="text-white-50">Customers Rewarded</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        <div class="stat-box">
-                            <div class="stat-number" id="surveyCount">+0</div>
-                            <div class="text-white-50">Surveys Completed</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Additional styling for images -->
-    <style>
-        .equal-image {
-            width: 100%;
-            max-height: 350px;
-            object-fit: contain;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
 
     <!-- Features Section -->
     <section class="py-5 bg-light">
@@ -379,19 +326,17 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- CTA Section (Single Form) -->
     <section class="hero-gradient">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-12 col-md-8 text-center">
-                    <h2 class="mb-4">Leave your email for FREE early access!</h2>
+                    <h2 class="mb-4">Sign up to try the live app for free</h2>
+                    <p class="lead">
+                        Simply leave your email and company name, and we’ll send you the link!
+                    </p>
 
-                    <!-- 
-                       The form:
-                       action="/subscribe" points to your Flask route
-                       method="POST"
-                       onsubmit="return gtag_report_conversion()" for Google Ads
-                    -->
+                    <!-- Sign-up Form -->
                     <form id="cta-form" action="/subscribe" method="POST" class="contact-form mx-auto"
                         style="max-width: 500px;" onsubmit="return gtag_report_conversion()">
                         <div class="mb-3">
@@ -405,7 +350,6 @@
                         <button type="submit" class="btn btn-primary btn-lg w-100">
                             Get Started
                         </button>
-                        <!-- Reassurance: minimal friction -->
                         <p class="mt-2 mb-0" style="font-size: 0.9rem; color: black;">
                             We value your privacy. No spam, unsubscribe any time.
                         </p>
@@ -420,16 +364,6 @@
                             });
                         });
                     </script>
-
-                    <!-- Optional Link to Live App -->
-                    <div class="mt-4">
-                        <a href="https://datagiftapp-f0e091656d6c.herokuapp.com/" class="btn btn-primary btn-sm"
-                            target="_blank" rel="noopener noreferrer">
-                            Try the Live App
-                        </a>
-                    </div>
-
-                    <br />
 
                     <!-- Security badges -->
                     <div class="mt-4">
@@ -453,52 +387,7 @@
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Animation Script -->
-    <script>
-        function animateValue(id, start, end, duration, suffix = "") {
-            const element = document.getElementById(id);
-            const range = end - start;
-            const increment = end > start ? 1 : -1;
-            const stepTime = Math.abs(Math.floor(duration / range));
-            let current = start;
-
-            const timer = setInterval(function () {
-                current += increment;
-                element.textContent = "+" + current + suffix;
-                if (current === end) {
-                    clearInterval(timer);
-                }
-            }, stepTime);
-        }
-
-        window.onload = function () {
-            // Animate those stats
-            animateValue("responseRate", 0, 200, 2000, "%");
-            animateValue("rewardsCount", 0, 4, 2000);
-            animateValue("surveyCount", 0, 22, 2000);
-
-            // If you have a process section with interactive items
-            const items = document.querySelectorAll('.process-item');
-            const images = document.querySelectorAll('.process-image');
-
-            if (images.length) {
-                images[0].classList.add('active');
-            }
-
-            items.forEach((item, index) => {
-                item.addEventListener('mouseenter', () => {
-                    items.forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-
-                    images.forEach(img => img.classList.remove('active'));
-                    if (images[index]) {
-                        images[index].classList.add('active');
-                    }
-                });
-            });
-        };
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
     </script>
 
     <!-- LinkedIn Tag (Optional) -->
